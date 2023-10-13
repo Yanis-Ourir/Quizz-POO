@@ -18,14 +18,34 @@ class QuizzManager {
         $pdoRequest->execute();
     }
 
+    public function findOneById($id) {
+        $pdoRequest = $this->pdo->prepare("SELECT * FROM quizz WHERE id = $id");
+        $pdoRequest->execute();
+        $quizz = $pdoRequest->fetch();
+        var_dump($quizz);
+        return $quizz;
+    }
+
+    public function findAllByUserId($idUser) {
+        $pdoRequest = $this->pdo->prepare("SELECT * FROM quizz WHERE idUser = $idUser");
+        $pdoRequest->execute();
+        $allUserQuizz = $pdoRequest->fetchAll();
+        var_dump($allUserQuizz);
+        return $allUserQuizz;
+    }
+
     public function findAll() {
         $pdoRequest = $this->pdo->prepare("SELECT * FROM quizz");
         $pdoRequest->execute();
         $allQuizz = $pdoRequest->fetchAll();
+        return $allQuizz;
+    }
 
-        foreach ($allQuizz as $quizz) {
-            echo "<div> <img src=". $quizz['image'] . " alt='miniature-quizz'/> <p>" . $quizz['name'] . "</p></div>";
-        }
+    public function delete($id) {
+        $pdoRequest = $this->pdo->prepare("DELETE FROM quizz WHERE id = $id");
+        var_dump($pdoRequest);
+        $pdoRequest->execute();
+        echo "Le quizz a bien été supprimé";        
     }
 }
 

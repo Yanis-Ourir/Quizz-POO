@@ -1,6 +1,7 @@
 <?php
 
 require_once './partials/Autoloader.php';
+require_once './partials/Connexion_Db.php';
 
 ?>
 

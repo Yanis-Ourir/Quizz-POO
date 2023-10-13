@@ -19,7 +19,9 @@ class UserManager {
 
     public function findOneById(int $id) {
         $findUser = $this->pdo->prepare("SELECT * FROM user WHERE id = $id");
-        var_dump($findUser->execute());
+        $findUser->execute();
+        $user = $findUser->fetch();
+        return $user;
     }
 
     public function findAll() {
