@@ -37,13 +37,17 @@ $allUserQuizz = $quizzManager->findAllByUserId($_SESSION['id']);
             <input type="file" class="form-control" name="image">
         </div>
         <div class="mb-3">
-            <label for="score" class="form-label">Combien de points pour cette question</label>
-            <input type="text" class="form-control" name="scoreGranted"> 
+            <label for="scoreGranted" class="form-label">Combien de point(s) pour cette question ? (entre 1 et 5 points)</label>
+            <input type="number" class="form-control" name="scoreGranted" min="1" max="5" value="1">
+        </div>
+        <div class="mb-3">
+            <label for="timer" class="form-label">Combien de temps pour cette question ? (entre 10 et 30 secondes)</label>
+            <input type="number" class="form-control" name="timer" min="10" max="30" value="10">
         </div>
         <div class="mb-3">
             <label for="quizz" class="form-label">à quelle quizz cette question appartient-elle ?</label>
             <select id="select" class="form-select">
-                <?php 
+                <?php
                 foreach ($allUserQuizz as $quizz) {
                     echo "<option value='" . $quizz['id'] . "' >" . $quizz['name'] . "</option>";
                 }

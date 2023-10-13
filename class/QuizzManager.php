@@ -22,7 +22,6 @@ class QuizzManager {
         $pdoRequest = $this->pdo->prepare("SELECT * FROM quizz WHERE id = $id");
         $pdoRequest->execute();
         $quizz = $pdoRequest->fetch();
-        var_dump($quizz);
         return $quizz;
     }
 
@@ -30,7 +29,6 @@ class QuizzManager {
         $pdoRequest = $this->pdo->prepare("SELECT * FROM quizz WHERE idUser = $idUser");
         $pdoRequest->execute();
         $allUserQuizz = $pdoRequest->fetchAll();
-        var_dump($allUserQuizz);
         return $allUserQuizz;
     }
 

@@ -7,12 +7,21 @@ class Question {
     private $timer;
     private $idQuizz;
     
-    public function __construct($title) {
-        $this->title = $title;
+    public function __construct(array $data) {
+        $this->setTitle($data['title']);
+        $this->setImage($data['image']);
+        $this->setAnswer($data['answer']);
+        $this->setScoreGranted($data['scoreGranted']);
+        $this->setTimer($data['timer']);
+        $this->setIdQuizz($data['idQuizz']);
     }
 
     public function getTitle() {
         return $this->title;
+    }
+
+    public function setTitle($title) {
+        $this->title = $title;
     }
 
     public function getImage() {
@@ -45,6 +54,14 @@ class Question {
 
     public function setTimer($timer) {
         $this->timer = $timer;
+    }
+
+    public function getIdQuizz() {
+        return $this->idQuizz;
+    }
+
+    public function setIdQuizz($idQuizz) {
+        $this->idQuizz = $idQuizz;
     }
 }
 
