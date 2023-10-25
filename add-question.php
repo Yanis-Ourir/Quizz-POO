@@ -23,14 +23,14 @@ $allUserQuizz = $quizzManager->findAllByUserId($_SESSION['id']);
 
 <body>
     <?php include('./partials/Navbar.php') ?>
-    <form action="/process/create_quizz.php" method="post" enctype="multipart/form-data" class="p-4">
+    <form action="/process/create_question.php" method="post" enctype="multipart/form-data" class="p-4">
         <div class="mb-3">
-            <label for="question" class="form-label">Votre question</label>
-            <input type="text" class="form-control" name="question">
+            <label for="title" class="form-label">Votre question</label>
+            <input type="text" class="form-control" name="title">
         </div>
         <div class="mb-3">
             <label for="theme" class="form-label">La réponse attendu à votre question</label>
-            <input type="text" class="form-control" name="theme">
+            <input type="text" class="form-control" name="answer">
         </div>
         <div class="mb-3">
             <label for="image" class="form-label">Image pour votre question si nécessaire</label>
@@ -46,7 +46,7 @@ $allUserQuizz = $quizzManager->findAllByUserId($_SESSION['id']);
         </div>
         <div class="mb-3">
             <label for="quizz" class="form-label">à quelle quizz cette question appartient-elle ?</label>
-            <select id="select" class="form-select">
+            <select id="select" class="form-select" name="idQuizz">
                 <?php
                 foreach ($allUserQuizz as $quizz) {
                     echo "<option value='" . $quizz['id'] . "' >" . $quizz['name'] . "</option>";
@@ -54,7 +54,7 @@ $allUserQuizz = $quizzManager->findAllByUserId($_SESSION['id']);
                 ?>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Créer un quizz</button>
+        <button type="submit" class="btn btn-primary">Créer une question</button>
     </form>
     <?php include('./partials/Footer.php') ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

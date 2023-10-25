@@ -6,10 +6,11 @@ require_once './partials/Autoloader.php';
 $idQuizz = $_GET['id'];
 
 $quizzManager = new QuizzManager($pdo);
+$questionManager = new QuestionManager($pdo);
 
 $quizz = $quizzManager->findOneById($idQuizz);
+$countQuestion = $questionManager->countByQuizzId($idQuizz);
 
-var_dump($quizz);
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +32,21 @@ var_dump($quizz);
         </div>
     
      
- 
+        <div>
+            <p>
+                Ce quizz contient
+            <?php
+            if($countQuestion['COUNT(*)'] > 1) {
+                echo $countQuestion['COUNT(*)'] . " questions";
+            } else {
+                echo $countQuestion['COUNT(*)'] . " question";
+            }
+            ?>
+            </p>
+
+        </div>
+
+        <a href="./quizz-question.php?idQuizz=<?= $idQuizz ?>&idQuestion=1">Commencer !</a>
 
     <?php include('./partials/Footer.php') ?>
 </body>

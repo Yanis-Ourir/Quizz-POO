@@ -3,6 +3,8 @@
 require_once '../partials/Autoloader.php';
 require_once '../partials/Connexion_Db.php';
 
+session_start();
+
 $questionManager = new QuestionManager($pdo);
 
 if (isset($_POST['title']) && isset ($_POST['answer']) && isset ($_POST['scoreGranted']) && isset($_POST['timer']) && isset ($_POST['idQuizz'])) {
@@ -43,9 +45,14 @@ if (isset($_POST['title']) && isset ($_POST['answer']) && isset ($_POST['scoreGr
         'idQuizz' => $_POST['idQuizz'],
     ]);
 
+    var_dump($question);
+
+    $questionManager->create($question);
+
     header('Location: ../add-question.php?success=question bien ajoutée');
 } else {
-    header('Location: ../add-question.php?error=Il manque des informations à votre question');
+    header('Location: ../add-question.php?error=IlmanqueDesInformations');
+    
 }
 
 }

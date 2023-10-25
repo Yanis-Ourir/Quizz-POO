@@ -17,7 +17,7 @@ class QuestionManager {
         $pdoRequest->bindValue(':timer', $question->getTimer());
         $pdoRequest->bindValue(':idQuizz', $question->getIdQuizz());
 
-        var_dump($pdoRequest->execute());
+        $pdoRequest->execute();
     }
 
     public function findAllByQuizzId($idQuizz) {
@@ -26,6 +26,21 @@ class QuestionManager {
         $questions = $pdoRequest->fetchAll();
         var_dump($questions);
         return $questions;
+    }
+
+    public function findOneByQuizzId($idQuizz, $idQuestion) {
+        $pdoRequest = $this->pdo->prepare("SELECT * FROM question WHERE idQuizz = $idQuizz AND id = $idQuestion");
+        $pdoRequest->execute();
+        $question = $pdoRequest->fetch();
+        var_dump($question);
+        return $question;
+    }
+
+    public function countByQuizzId($idQuizz) {
+        $pdoRequest = $this->pdo->prepare("SELECT COUNT(*) FROM question WHERE idQuizz = $idQuizz");
+        $pdoRequest->execute();
+        $questionsNumber = $pdoRequest->fetch();
+        return $questionsNumber;
     }
 
     public function delete($id) {
