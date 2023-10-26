@@ -9,16 +9,10 @@ $questionManager = new QuestionManager($pdo);
 
 $question = $questionManager->findOneByQuizzId($idQuizz, $idQuestion);
 
-var_dump($question);
-
 $timer = $question['timer'];
 
 
-
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,19 +27,20 @@ $timer = $question['timer'];
 <body>
     <?php include('./partials/Navbar.php'); ?>
 
-    <div>
-        <p id="timer">15</p>
-    </div>
-    <div>
-        <img src="<?=$question['image'] ?>" alt="question-image">
-    <?php echo "<p>" . $question['title'] . "</p>"; ?>
-    </div>
+    <div class="d-flex flex-column align-items-center m-4 p-4">
+        <div>
+            <p id="timer" class=""><?=$timer?></p>
+        </div>
+        <div>
+            <img src="<?=$question['image'] ?>" alt="question-image">
+        <?php echo "<p>" . $question['title'] . "</p>"; ?>
+        </div>
 
-    <form method="post" action="">
-        <label for="answer">Votre réponse :</label>
-        <input type="text" name="answer" id="answer">
-    </form>
-
+        <form method="post" action="">
+            <label for="answer">Votre réponse :</label>
+            <input type="text" name="answer" id="answer">
+        </form>
+    </div>
 
 
 

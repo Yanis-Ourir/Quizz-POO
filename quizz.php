@@ -17,7 +17,7 @@ require_once './partials/Connexion_Db.php';
 
 <body>
     <?php include('./partials/Navbar.php') ?>
-    <form action="/process/create_quizz.php" method="post" enctype="multipart/form-data">
+    <form action="/process/create_quizz.php" method="post" enctype="multipart/form-data" class="p-4 m-4">
             <div class="mb-3">
                 <label for="name" class="form-label">Nom de votre quizz</label>
                 <input type="text" class="form-control" name="name">
