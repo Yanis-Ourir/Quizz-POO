@@ -36,7 +36,7 @@ $currentQuizz = $quizz->findOneById($_GET['idQuizz']);
             <label for="image" class="form-label"><img src="<?= $currentQuizz['image'] ?>" alt="quizz"></label>
             <input type="file" class="form-control" name="image">
         </div>
-        <button type="submit" class="btn btn-primary">Créer un quizz</button>
+        <button type="submit" class="btn btn-primary">Modifier quizz</button>
     </form>
 
 

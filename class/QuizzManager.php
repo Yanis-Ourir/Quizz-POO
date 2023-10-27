@@ -19,7 +19,7 @@ class QuizzManager {
     }
 
     public function update($name, $theme, $updatedAt, $id) {
-        $pdoRequest = $this->pdo->prepare("UPDATE quizz SET name = $name, theme = $theme, updatedAt = $updatedAt WHERE id = $id");
+        $pdoRequest = $this->pdo->prepare("UPDATE quizz SET name = '$name', theme = '$theme', updatedAt = '$updatedAt' WHERE id = $id");
         $pdoRequest->execute();
     }
 

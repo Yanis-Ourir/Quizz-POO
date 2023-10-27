@@ -13,7 +13,7 @@ var_dump($findUpdatedQuizz);
 if(isset($_POST['name']) || isset($_POST['theme'])) {
     if ($findUpdatedQuizz) {
         $quizzManager->update($_POST['name'], $_POST['theme'], $updatedAt, $idQuizz);
-        header('Location: user-quizz.php');
+        header('Location: ../user-quizz.php');
     } 
 }
 
