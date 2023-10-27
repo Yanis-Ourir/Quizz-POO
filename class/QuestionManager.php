@@ -28,11 +28,10 @@ class QuestionManager {
         return $questions;
     }
 
-    public function findOneByQuizzId($idQuizz, $idQuestion) {
-        $pdoRequest = $this->pdo->prepare("SELECT * FROM question WHERE idQuizz = $idQuizz AND id = $idQuestion");
+    public function findOneByQuizzId($idQuestion) {
+        $pdoRequest = $this->pdo->prepare("SELECT * FROM question WHERE id = $idQuestion");
         $pdoRequest->execute();
         $question = $pdoRequest->fetch();
-        var_dump($question);
         return $question;
     }
 

@@ -18,6 +18,11 @@ class QuizzManager {
         $pdoRequest->execute();
     }
 
+    public function update($name, $theme, $updatedAt, $id) {
+        $pdoRequest = $this->pdo->prepare("UPDATE quizz SET name = $name, theme = $theme, updatedAt = $updatedAt WHERE id = $id");
+        $pdoRequest->execute();
+    }
+
     public function findOneById($id) {
         $pdoRequest = $this->pdo->prepare("SELECT * FROM quizz WHERE id = $id");
         $pdoRequest->execute();

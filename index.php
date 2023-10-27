@@ -47,9 +47,9 @@ if ($_SESSION['logged'] != true) {
         <div class="card m-4" style="width: 18rem;">
             <img src="./assets/images/quizz.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Modifier vos quizz</h5>
-                <p class="card-text">Supprimer vos quizz, enlever des questions qui ne vous conviennent pas</p>
-                <a href="./edit-quizz.php" class="btn btn-primary">Modifier un quizz</a>
+                <h5 class="card-title">Vos quizz</h5>
+                <p class="card-text">Supprimer/Modifier contempler vos quizz</p>
+                <a href="./user-quizz.php" class="btn btn-primary">Modifier un quizz</a>
             </div>
         </div>
 

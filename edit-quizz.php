@@ -5,12 +5,11 @@ require_once './partials/Autoloader.php';
 session_start();
 
 $quizz = new QuizzManager($pdo);
-$quizzOwner = $quizz->findAllByUserId($_SESSION['id']);
+
+$currentQuizz = $quizz->findOneById($_GET['idQuizz']);
 
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,30 +23,26 @@ $quizzOwner = $quizz->findAllByUserId($_SESSION['id']);
 
 <body>
     <?php include('./partials/Navbar.php'); ?>
-    <div class='container'>
-        <div class='row'>
-            <?php
-            foreach ($quizzOwner as $quizz) {
-                echo " <div class='col-4 mt-4'>
-                    <div class='card' style='width: 18rem;'>
-                        <img src=" . $quizz['image'] . " alt='miniature-quizz' />
-                        <div class='card-body'>
-                            <h5 class='card-title'>" . $quizz['name'] . "</h5>
-                            <p class='card-text'>" . $quizz['theme'] . "</p>
-                            <a href='./quizz-details.php?id=" . $quizz['id'] . "' class='btn btn-primary'>Modifier</a>
-                            <a href='./process/delete_quizz.php?id=" . $quizz['id'] . "' class='btn btn-danger'>Supprimer</a>
-                        </div>
-                    </div>
-                </div>";
-            }
-            ?>
+    <form action="/process/update_quizz.php?id=<?=$currentQuizz['id']?>" method="post" enctype="multipart/form-data" class="p-4 m-4">
+        <div class="mb-3">
+            <label for="name" class="form-label">Nom de votre quizz</label>
+            <input type="text" class="form-control" name="name" value="<?= $currentQuizz['name'] ?>">
         </div>
-    </div>
+        <div class="mb-3">
+            <label for="theme" class="form-label">Thème de votre quizz</label>
+            <input type="text" class="form-control" name="theme" value="<?= $currentQuizz['theme'] ?>">
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label"><img src="<?= $currentQuizz['image'] ?>" alt="quizz"></label>
+            <input type="file" class="form-control" name="image">
+        </div>
+        <button type="submit" class="btn btn-primary">Créer un quizz</button>
+    </form>
 
 
 
-            <?php include('./partials/Footer.php'); ?>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <?php include('./partials/Footer.php'); ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
 </html>
